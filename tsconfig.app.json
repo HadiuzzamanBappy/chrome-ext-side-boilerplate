@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "useUnknownInCatchVariables": true,
+    "resolveJsonModule": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -1,75 +1,72 @@
-# React + TypeScript + Vite
+# PageMind Pricing Extension (Boilerplate)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance Chrome Extension boilerplate built with **React 19**, **Vite**, and **Tailwind CSS**. Designed specifically for SidePanel-based extension architectures.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **SidePanel Ready**: Pre-configured `sidepanel.html` and manifest settings.
+- **Background Script**: Service worker setup for extension-level events.
+- **Multi-Entry Build**: Vite configuration optimized for separate sidepanel and background entry points.
+- **Modern Stack**: React 19 + TypeScript + Vite.
+- **Premium UI**: 
+  - **Tailwind CSS 3**: Utility-first styling with custom theme tokens.
+  - **ThemeProvider**: Centralized dark/light/system mode management with persistence.
+  - **Glassmorphism**: Pre-configured glass styles and premium gradients.
+  - **Modular Architecture**: Reusable `Header`, `Footer`, and `Button` components.
+- **Dynamic Versioning**: Automatically pulls the application version from `package.json`.
 
-## React Compiler
+## 🛠️ Project Structure
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── background/      # Service worker logic
+├── components/      # Reusable UI components
+│   ├── ui/          # Atomic components (Button, etc.)
+│   ├── Header.tsx   # Global layout header
+│   └── Footer.tsx   # Global layout footer
+├── hooks/           # Custom React hooks (useTheme)
+├── providers/       # Context providers (ThemeProvider)
+└── main.tsx         # SidePanel entry point
+public/              # Static assets (manifest.json, icons)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚥 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Installation
+```bash
+npm install
 ```
+
+### 2. Development
+Start the Vite dev server for hot-reloading:
+```bash
+npm run dev
+```
+
+### 3. Build for Extension
+Generate the `dist/` folder compatible with Chrome:
+```bash
+npm run build
+```
+
+### 4. Load in Chrome
+1. Open Chrome and navigate to `chrome://extensions/`.
+2. Enable **Developer mode** (top right).
+3. Click **Load unpacked**.
+4. Select the `dist/` folder in this project directory.
+
+## 📜 Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Compiles the project for production (Chrome-ready).
+- `npm run lint`: Runs ESLint for code quality.
+- `npm run preview`: Preview the production build locally.
+
+## 🔧 Configuration
+
+- **Manifest**: Located at `public/manifest.json`.
+- **Vite**: Configured in `vite.config.ts` for multi-entry bundling.
+- **Theme**: Tokens and colors defined in `tailwind.config.js` and `src/index.css`.
+
+---
+Built with ❤️ for high-fidelity Chrome Extension development.
